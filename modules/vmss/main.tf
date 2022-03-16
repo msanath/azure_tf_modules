@@ -13,6 +13,12 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   admin_password                  = var.vm_admin_password
   disable_password_authentication = false
 
+  # Managed Identity
+  identity {
+    type         = var.identity_type
+    identity_ids = var.user_assigned_identities
+  }
+
   # Image properties
   source_image_reference {
     publisher = "RedHat"

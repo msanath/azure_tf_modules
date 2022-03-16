@@ -42,3 +42,23 @@ variable "tags" {
   type = map(string)
   default = {}
 }
+
+variable "identity_type" {
+  type = string
+  default = "SystemAssigned"
+  description = "The type of managed identity to use for the VMSS."
+  validation {
+    condition = anytrue(
+      [ var.identity_type == "SystemAssigned",
+        var.identity_type == "UserAssigned"
+      ]
+    )
+    error_message = "The value has to be one of SystemAssigned or UserAssigned."
+  }
+}
+
+variable "user_assigned_identities" {
+  type = list(string)
+  default = []
+  description = "A list of user assigned identities."
+}

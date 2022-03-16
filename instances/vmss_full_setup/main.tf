@@ -43,6 +43,14 @@ resource "random_string" "password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
+# create a managed identity for the VMSS
+module "managed_identity" {
+  source = "../../modules/user_managed_identity"
+  location = var.location
+  managed_identity_name = "${var.vmss_name}-identity"
+  resource_group_name = module.resource_group.resource_group_name
+}
+
 module "vmss" {
   source = "../../modules/vmss"
   instance_count = var.instance_count
@@ -53,5 +61,7 @@ module "vmss" {
   vm_admin_password = random_string.password.result
   vm_sku_name = var.vm_sku_name
   vmss_name = var.vmss_name
+  identity_type = "UserAssigned"
+  user_assigned_identities = [module.managed_identity.managed_identity_id]
   tags = var.tags
 }
