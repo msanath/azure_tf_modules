@@ -11,7 +11,7 @@ resource "azurerm_role_definition" "definition" {
 }
 
 resource "azurerm_role_assignment" "assignment" {
-  role_definition_name = var.role_def_name
+  role_definition_name = azurerm_role_definition.definition.name
   principal_id = var.role_assignee_principal_id
   scope        = var.scope_resource_id
 }
