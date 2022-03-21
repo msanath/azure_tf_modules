@@ -1,15 +1,15 @@
 variable "location" {
-  type = string
+  type        = string
   description = "The locaiton where the ServiceBus instance is to be created."
 }
 
 variable "namespace_name" {
-  type = string
+  type        = string
   description = "The name of the ServiceBus namespace."
 }
 
 variable "resource_group_name" {
-  type = string
+  type        = string
   description = "The name of the resource group where the ServiceBus instance is to be created."
 }
 
@@ -25,12 +25,12 @@ variable "sku_tier" {
         var.sku_tier == "Premium",
       ]
     )
-    error_message = "The value has to be one of SystemAssigned or UserAssigned."
+    error_message = "The value has to be one of Basic, Standard or Premium."
   }
 }
 
 variable "queue_names" {
-  type = list(string)
+  type        = list(string)
   description = "A list of queue names."
 }
 

@@ -1,11 +1,11 @@
 # This setups up the Virtual Machine Scale Set within which VMs get provisioned.
 
 resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
-  name                = var.vmss_name
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  sku                 = var.vm_sku_name
-  instances           = var.instance_count
+  name                 = var.vmss_name
+  resource_group_name  = var.resource_group_name
+  location             = var.location
+  sku                  = var.vm_sku_name
+  instances            = var.instance_count
   computer_name_prefix = var.vmss_name
 
   # authentication preferences

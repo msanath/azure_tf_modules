@@ -3,15 +3,15 @@ resource "azurerm_role_definition" "definition" {
   scope = var.scope_resource_id
 
   permissions {
-    actions = var.actions
-    not_actions = var.not_actions
-    data_actions = var.data_actions
+    actions          = var.actions
+    not_actions      = var.not_actions
+    data_actions     = var.data_actions
     not_data_actions = var.not_data_actions
   }
 }
 
 resource "azurerm_role_assignment" "assignment" {
   role_definition_name = azurerm_role_definition.definition.name
-  principal_id = var.role_assignee_principal_id
-  scope        = var.scope_resource_id
+  principal_id         = var.role_assignee_principal_id
+  scope                = var.scope_resource_id
 }
